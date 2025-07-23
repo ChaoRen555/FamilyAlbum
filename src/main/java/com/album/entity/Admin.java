@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Admin {
+    //N means necessary field
     private Integer id;
-    private String username;
+    private String username; //N
     private String password;
     private String name;
     private String avatar;

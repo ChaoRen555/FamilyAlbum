@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.album.mapper.AdminMapper">
+
+
+    <insert id="insert" parameterType="com.album.entity.Admin" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO admin (username, password, name, phone, email, avatar, role)
+        VALUES (#{username}, #{password}, #{name}, #{phone}, #{email}, #{avatar}, #{role})
+    </insert>
+
+</mapper>

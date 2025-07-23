@@ -1,23 +1,36 @@
 package com.album.controller;
 
+
+
+
+import com.album.common.Result;
 import com.album.entity.Admin;
 import com.album.mapper.AdminMapper;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.album.service.AdminService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+
 
 @RestController
+@RequestMapping("/admin")
+@Slf4j
 public class AdminController {
 
-    private final AdminMapper adminMapper;
+     @Autowired
+     private AdminService adminService;
 
-    public AdminController(AdminMapper adminMapper) {
-        this.adminMapper = adminMapper;
-    }
+     @PostMapping("/add")
+     public Result addNew(@RequestBody Admin admin){
+         log.info("New Admin : {}", admin);
+         adminService.add(admin);
+         return Result.success();
+     }
 
-    @GetMapping("/admin/list")
-    public List<Admin> listAdmins() {
-        return adminMapper.findAll();
-    }
+
+
 }
