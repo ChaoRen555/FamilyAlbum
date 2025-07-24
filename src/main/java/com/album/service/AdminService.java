@@ -4,4 +4,8 @@ import com.album.entity.Admin;
 
 public interface AdminService {
     void add(Admin admin);
+
+    Admin selectById(Integer id);
+
+    void deleteById(Integer id);
 }

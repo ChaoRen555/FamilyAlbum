@@ -24,13 +24,23 @@ public class AdminServiceImpl implements AdminService {
         if (user != null) {
             throw new CustomerException(ResultCodeEnum.USER_EXIST_ERROR);
         }
-        if(admin.getPassword() == null || admin.getPassword().equals("")){
+        if (admin.getPassword() == null || admin.getPassword().equals("")) {
             admin.setPassword(Constants.USER_DEFAULT_PASSWORD);
         }
-        if(admin.getUsername() == null || admin.getUsername().equals("")){
-             admin.setName(admin.getUsername());
+        if (admin.getUsername() == null || admin.getUsername().equals("")) {
+            admin.setName(admin.getUsername());
         }
-         admin.setRole(RoleEnum.ADMIN.name());
-         adminMapper.insert(admin);
+        admin.setRole(RoleEnum.ADMIN.name());
+        adminMapper.insert(admin);
+    }
+
+
+    public Admin selectById(Integer id) {
+        return adminMapper.selectById(id);
+    }
+
+
+    public void deleteById(Integer id) {
+        adminMapper.deleteById(id);
     }
 }

@@ -5,15 +5,10 @@ package com.album.controller;
 
 import com.album.common.Result;
 import com.album.entity.Admin;
-import com.album.mapper.AdminMapper;
 import com.album.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -31,6 +26,17 @@ public class AdminController {
          return Result.success();
      }
 
+     @GetMapping("/selectById/{id}")
+     public Result selectById(@PathVariable Integer id){
+          Admin admin = adminService.selectById(id);
+         return Result.success(admin);
+     }
+
+     @DeleteMapping("/deleteById/{id}")
+     public Result deleteById(@PathVariable Integer id){
+         adminService.deleteById(id);
+         return Result.success();
+     }
 
 
 }
