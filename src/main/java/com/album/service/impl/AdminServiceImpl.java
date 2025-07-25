@@ -7,9 +7,14 @@ import com.album.entity.Admin;
 import com.album.exception.CustomerException;
 import com.album.mapper.AdminMapper;
 import com.album.service.AdminService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -43,4 +48,32 @@ public class AdminServiceImpl implements AdminService {
     public void deleteById(Integer id) {
         adminMapper.deleteById(id);
     }
+
+
+    public void deleteBatch(List<Integer> ids) {
+        for (Integer id : ids) {
+            adminMapper.deleteById(id);
+        }
+    }
+
+
+    public void update(Admin admin) {
+        adminMapper.update(admin);
+    }
+
+
+    public List<Admin> selectAll(Admin admin) {
+        return adminMapper.selectAll(admin);
+    }
+
+    /**
+     * Pagination
+     */
+    public PageInfo<Admin> selectPage(Admin admin, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Admin> page = adminMapper.selectAll(admin);
+        return new PageInfo<>(page);
+    }
+
+
 }
